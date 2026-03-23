@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form Validation</title>
+  </head>
+  <body>
+    <form onsubmit="return validatedForm(event);">
+      <div>
+        <label>Full Name:</label>
+        <input type="text" id="fullname" />
+      </div>
+
+      <div>
+        <label>Password:</label>
+        <input type="password" id="password" />
+      </div>
+
+      <div>
+        <label>Email:</label>
+        <input type="email" id="email" />
+      </div>
+
+      <input type="submit" value="Submit" />
+      <p id="error" style="color: red"></p>
+    </form>
+
+    <script>
+      function validatedForm(e) {
+        e.preventDefault();
+
+        const fullname = document.getElementById("fullname").value.trim();
+        const password = document.getElementById("password").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const error = document.getElementById("error");
+
+        error.textContent = ""; // clear old errors
+
+        // Full Name validation
+        if (fullname === "" || fullname.length < 8) {
+          error.textContent = "Full name must be at least 8 characters.";
+          return false;
+        }
+
+        // Email validation (regex)
+        const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+        if (!email.match(emailPattern)) {
+          error.textContent = "Enter a valid email address.";
+          return false;
+        }
+
+        // Password validation
+        if (password.length < 6) {
+          error.textContent = "Password must be at least 6 characters.";
+          return false;
+        }
+
+        // Success
+        alert("Form submitted successfully!");
+        return true;
+      }
+    </script>
+  </body>
+</html>
