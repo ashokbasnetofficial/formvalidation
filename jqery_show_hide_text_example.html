@@ -4,25 +4,41 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- jQuery CDN -->
+    <!-- jQuery CDN (library to simplify JavaScript tasks) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
     <title>Document</title>
   </head>
 
   <body>
+    <!-- Button to toggle show/hide -->
     <button id="btn">Hide</button>
+
+    <!-- Paragraph to show/hide -->
     <p id="p1">Hello I am Ashok Basnet</p>
 
     <script>
-      document.cookie = `name=Ashok; password=Ashok@1243 ;exprires=${new Date()} ;path=/`;
+      // Setting a cookie in the browser
+      // NOTE: 'expires' is misspelled as 'exprires' (should be fixed)
+      document.cookie = `name=Ashok; password=Ashok@1243; expires=${new Date()}; path=/`;
+
+      // jQuery ready function
+      // Runs when the HTML document is fully loaded
       $(document).ready(function () {
+        // Attach click event to button
         $("#btn").click(function () {
+          // Check if paragraph (#p1) is currently visible
           if ($("#p1").is(":visible")) {
+            // If visible → hide it
             $("#p1").hide();
+
+            // Change button text to "Show"
             $("#btn").text("Show");
           } else {
+            // If hidden → show it
             $("#p1").show();
+
+            // Change button text back to "Hide"
             $("#btn").text("Hide");
           }
         });
