@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- jQuery CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <title>Document</title>
+  </head>
+
+  <body>
+    <button id="btn">Hide</button>
+    <p id="p1">Hello I am Ashok Basnet</p>
+
+    <script>
+      document.cookie = `name=Ashok; password=Ashok@1243 ;exprires=${new Date()} ;path=/`;
+      $(document).ready(function () {
+        $("#btn").click(function () {
+          if ($("#p1").is(":visible")) {
+            $("#p1").hide();
+            $("#btn").text("Show");
+          } else {
+            $("#p1").show();
+            $("#btn").text("Hide");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
