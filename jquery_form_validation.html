@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>jQuery Form Validation</title>
+
+    <!-- jQuery CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <style>
+      .error {
+        color: red;
+        font-size: 14px;
+      }
+      input {
+        display: block;
+        margin-bottom: 10px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h2>Registration Form</h2>
+
+    <form id="myForm">
+      <!-- Name -->
+      <input type="text" id="name" placeholder="Enter your name" />
+      <span class="error" id="nameError"></span>
+
+      <!-- Email -->
+      <input type="text" id="email" placeholder="Enter your email" />
+      <span class="error" id="emailError"></span>
+
+      <!-- Password -->
+      <input type="password" id="password" placeholder="Enter password" />
+      <span class="error" id="passError"></span>
+
+      <!-- Submit -->
+      <button type="submit">Submit</button>
+    </form>
+
+    <script>
+      $(document).ready(function () {
+        // Form submit event
+        $("#myForm").submit(function (event) {
+          // Prevent form submission
+          event.preventDefault();
+
+          // Clear previous error messages
+          $(".error").text("");
+
+          // Get input values
+          let name = $("#name").val().trim();
+          let email = $("#email").val().trim();
+          let password = $("#password").val().trim();
+
+          let isValid = true;
+
+          // Name validation
+          if (name === "") {
+            $("#nameError").text("Name is required");
+            isValid = false;
+          }
+
+          // Email validation (simple regex)
+          let emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+          if (email === "") {
+            $("#emailError").text("Email is required");
+            isValid = false;
+          } else if (!email.match(emailPattern)) {
+            $("#emailError").text("Invalid email format");
+            isValid = false;
+          }
+
+          // Password validation
+          if (password === "") {
+            $("#passError").text("Password is required");
+            isValid = false;
+          } else if (password.length < 6) {
+            $("#passError").text("Password must be at least 6 characters");
+            isValid = false;
+          }
+
+          // If all fields are valid
+          if (isValid) {
+            alert("Form submitted successfully!");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
